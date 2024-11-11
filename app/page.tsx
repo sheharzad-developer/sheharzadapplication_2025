@@ -1,3 +1,5 @@
-export default function Home() {
-  return <h1 className="text-3xl text-violent-700 font-black">Welcome to NextJS</h1>;
-}
+const Home = () => {
+  <h1 className="text-3xl font-black text-white">Welcome to NextJS</h1>;
+};
+
+export default Home;
