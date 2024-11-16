@@ -5,6 +5,8 @@ import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
+import handleError from "@/lib/handlers/error";
+import { ValidationError } from "@/lib/http-errors";
 
 const questions = [
   {
@@ -46,6 +48,17 @@ const questions = [
     createdAt: new Date("2021-09-01"),
   },
 ];
+
+const test = async () => {
+  try {
+    throw new ValidationError({
+      title: ["Required"],
+      tags: ['"JavaScript" is not a valid tag.'],
+    });
+  } catch (error) {
+    return handleError(error);
+  }
+};
 
 interface SearchParams {
   searchParams: Promise<{ [key: string]: string }>;
