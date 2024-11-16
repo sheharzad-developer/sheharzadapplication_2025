@@ -65,6 +65,7 @@ interface SearchParams {
 }
 
 const Home = async ({ searchParams }: SearchParams) => {
+  await test();
   const { query = "", filter = "" } = await searchParams;
 
   const filteredQuestions = questions.filter((question) => {
