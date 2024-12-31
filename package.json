@@ -22,7 +22,7 @@
     "cm6-theme-basic-dark": "^0.2.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-n": "^17.13.1",
+    "eslint-plugin-n": "^17.15.1",
     "eslint-plugin-tailwindcss": "^3.17.5",
     "lucide-react": "^0.456.0",
     "mongodb": "^6.10.0",

@@ -6,7 +6,9 @@ import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
 import handleError from "@/lib/handlers/error";
-import { ValidationError } from "@/lib/http-errors";
+// import { ValidationError } from "@/lib/http-errors";
+import { api } from "@/lib/api";
+import { fetchHandler } from "@/lib/handlers/fetch";
 
 const questions = [
   {
@@ -50,11 +52,11 @@ const questions = [
 ];
 
 const test = async () => {
+  const users = fetchHandler("https://jsonplaceholder.typicode.com/users", {
+    timeout: 1000,
+  });
   try {
-    throw new ValidationError({
-      title: ["Required"],
-      tags: ['"JavaScript" is not a valid tag.'],
-    });
+    return await api.users.getAll();
   } catch (error) {
     return handleError(error);
   }
@@ -65,7 +67,9 @@ interface SearchParams {
 }
 
 const Home = async ({ searchParams }: SearchParams) => {
-  await test();
+  const users = await test();
+  console.log(users);
+
   const { query = "", filter = "" } = await searchParams;
 
   const filteredQuestions = questions.filter((question) => {

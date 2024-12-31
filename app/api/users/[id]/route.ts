@@ -6,6 +6,7 @@ import { NotFoundError } from "@/lib/http-errors";
 import dbConnect from "@/lib/mongoose";
 import { UserSchema } from "@/lib/validations";
 
+// Get /api/users/[id]
 export async function GET(
   _: Request,
   { params }: { params: Promise<{ id: string }> }
@@ -25,6 +26,7 @@ export async function GET(
   }
 }
 
+// Delete /api/users/[id]
 export async function DELETE(
   _: Request,
   { params }: { params: Promise<{ id: string }> }
@@ -44,6 +46,7 @@ export async function DELETE(
   }
 }
 
+// Put /api/users/[id]
 export async function PUT(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
