@@ -9,6 +9,7 @@ import handleError from "@/lib/handlers/error";
 // import { ValidationError } from "@/lib/http-errors";
 import { api } from "@/lib/api";
 import { fetchHandler } from "@/lib/handlers/fetch";
+import { auth } from "@/auth";
 
 const questions = [
   {
@@ -51,25 +52,13 @@ const questions = [
   },
 ];
 
-const test = async () => {
-  const users = fetchHandler("https://jsonplaceholder.typicode.com/users", {
-    timeout: 1000,
-  });
-  try {
-    return await api.users.getAll();
-  } catch (error) {
-    return handleError(error);
-  }
-};
-
 interface SearchParams {
   searchParams: Promise<{ [key: string]: string }>;
 }
 
 const Home = async ({ searchParams }: SearchParams) => {
-  const users = await test();
-  console.log(users);
-
+  const session = await auth();
+  console.log("Session: ", session);
   const { query = "", filter = "" } = await searchParams;
 
   const filteredQuestions = questions.filter((question) => {
